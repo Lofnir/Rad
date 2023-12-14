@@ -16,17 +16,23 @@ public class CharacterControlScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        velocity = Vector3.zero;
+        acceleration = Vector3.zero;
 
         if (Input.GetKey(KeyCode.W))
-        { acceleration = transform.forward; };
+        { acceleration = transform.forward; }
 
         if (Input.GetKey(KeyCode.S))
-        { acceleration = -transform.forward; };
+        { acceleration = -transform.forward; }
+
 
         if (Input.GetKey(KeyCode.D))
         {  transform.Rotate(Vector3.up, rateOfRotation * Time.deltaTime); }
-            velocity += acceleration * Time.deltaTime;
+
+        if (Input.GetKey(KeyCode.A))
+        { transform.Rotate(Vector3.down, rateOfRotation * Time.deltaTime); }
+
+
+        velocity += acceleration * Time.deltaTime;
 
         // s        =       u           *       t
         transform.position += velocity * Time.deltaTime;
